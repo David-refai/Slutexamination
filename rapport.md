@@ -19,7 +19,7 @@ Den primära målgruppen är rekryterare och potentiella arbetsgivare inom IT-se
 ---
 
 ## 2. UI-skisser och mockup
-Utvecklingsprocessen inleddes med skisser och en digital mockup (`portfolio_mockup.png`) för att fastställa layout och visuell hierarki. Fokus låg på en "mobile-first"-approach där innehållet flyter sömlöst mellan olika skärmstorlekar.
+Utvecklingsprocessen inleddes med skisser och digitala mockup-bilder (finns i mappen `mockup/`) för att fastställa layout och visuell hierarki. Dessa skisser (`mockup1.jpg`, `mockup2.jpg`, `mockup3.jpg`) visar hur sidan var tänkt att se ut från början och hur den har anpassats för olika sektioner. Fokus låg på en "mobile-first"-approach där innehållet flyter sömlöst mellan olika skärmstorlekar.
 
 ### Designval och Rationale
 - **Färgval**: Grunden utgörs av en djupt mörk färgskala (`#0d1117` och `#161b22`) för att skapa en modern "Dark Mode"-estetik. Detta valdes för att minimera ansträngning för ögonen och för att låta projektbilderna och accentfärgerna poppa.
