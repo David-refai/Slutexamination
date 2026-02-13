@@ -1,37 +1,74 @@
-let slideIndex = 1;
-showSlides(slideIndex);
+document.addEventListener('DOMContentLoaded', function () {
 
-// Next/previous controls
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
+  console.log('Portfolio initialized with Modern Grid Layout');
 
-// Thumbnail image controls
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
+  // 1. Hamburger Menu Toggle
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
 
-function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  let dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  if (slides[slideIndex-1]) {
-    slides[slideIndex-1].style.display = "block";
-  }
-  if (dots[slideIndex-1]) {
-    dots[slideIndex-1].className += " active";
-  }
-}
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      // Toggle icon between bars and times
+      const icon = menuToggle.querySelector('i');
+      if (icon.classList.contains('fa-bars')) {
+        icon.classList.replace('fa-bars', 'fa-times');
+      } else {
+        icon.classList.replace('fa-times', 'fa-bars');
+      }
+    });
 
-// Optional: Auto-slide
-// setInterval(() => {
-//   plusSlides(1);
-// }, 5000);
+    // Close menu when a link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        const icon = menuToggle.querySelector('i');
+        icon.classList.replace('fa-times', 'fa-bars');
+      });
+    });
+  }
+
+  // 2. Scroll Reveal Effect (Intersection Observer)
+  const revealOptions = {
+    threshold: 0.25, // Reveal when 25% is visible
+    rootMargin: "0px 0px -100px 0px" // Offset reveal to happen slightly later
+  };
+
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // Optional: stop observing once visible
+        // observer.unobserve(entry.target); 
+      } else {
+        // Re-blur when scrolling away if desired
+        entry.target.classList.remove('visible');
+      }
+    });
+  }, revealOptions);
+
+  const revealElements = document.querySelectorAll('.reveal-image');
+  revealElements.forEach(el => revealObserver.observe(el));
+  // 3. Custom Slideshow Logic (Now using Splide.js)
+  const splideElement = document.querySelector('#image-carousel');
+  if (splideElement) {
+    const splide = new Splide('#image-carousel', {
+      type: 'loop',
+      drag: 'free',
+      focus: 'center',
+      autoplay: true,
+      interval: 5000,
+      pauseOnHover: true,
+      arrows: true,
+      pagination: true,
+      easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+      speed: 800,
+      breakpoints: {
+        768: {
+          arrows: false,
+        },
+      }
+    });
+    splide.mount();
+  }
+});

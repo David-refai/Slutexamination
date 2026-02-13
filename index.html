@@ -1,15 +1,43 @@
 <!DOCTYPE html>
 <html lang="sv">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Berthén Kumiloher | Frontend-utvecklare Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>David Alrefai | Webbutvecklare Portfolio</title>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        as="style">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    </noscript>
+
+    <link rel="stylesheet" href="style.min.css">
+
+    <!-- Defer non-critical CSS -->
+    <link rel="preload" href="lib/fa.min.css" as="style">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" as="style">
+    <noscript>
+        <link rel="stylesheet" href="lib/fa.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+    </noscript>
+
+    <link rel="preload" as="image" href="images/project1.webp" fetchpriority="high">
+    <meta name="description" content="Portfolio för David Alrefai">
 </head>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // 0. CSP-Compliant Deferred CSS Loading
+        const preloadLinks = document.querySelectorAll('link[rel="preload"][as="style"]');
+        preloadLinks.forEach(link => {
+            link.rel = 'stylesheet';
+        });
+    });
+</script>
 <body>
 
     <header>
@@ -17,11 +45,15 @@
             <nav>
                 <a href="#" class="logo">BK.</a>
                 <ul class="nav-links">
-                    <li><a href="#home">Hem</a></li>
+                    <li><a href="#hero">Hem</a></li>
                     <li><a href="#skills">Färdigheter</a></li>
                     <li><a href="#projects">Projekt</a></li>
+                    <li><a href="#gallery">Galleri</a></li>
                     <li><a href="#contact">Kontakt</a></li>
                 </ul>
+                <button class="menu-toggle" aria-label="Toggle Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
             </nav>
         </div>
     </header>
@@ -31,11 +63,13 @@
         <section id="home" class="hero container">
             <div class="hero-content">
                 <h1>Junior Developer</h1>
-                <p>Jag skapar moderna, användarvänliga webbupplevelser med fokus på ren kod och god design. Välkommen till min portfölj!</p>
-                <a href="#contact" class="btn-primary" style="display: inline-block; padding: 1rem 2rem; background: var(--accent-color); color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">Kontakta Mig</a>
+                <p>Jag skapar moderna, användarvänliga webbupplevelser med fokus på ren kod och god design. Välkommen
+                    till min portfölj!</p>
+                <a href="#contact" class="btn-primary">Kontakta Mig</a>
             </div>
             <div class="hero-image">
-                <img src="images/profile.png" alt="Berthén Kumiloher">
+                <img id="hero-image" src="images/profile.webp" alt="Berthén Kumiloher" fetchpriority="high" width="300"
+                    height="300">
             </div>
         </section>
 
@@ -64,52 +98,103 @@
                     <h3>Git</h3>
                 </article>
                 <article class="skill-card">
-                    <i class="fa-solid fa-mobile-screen"></i>
-                    <h3>Responsive Design</h3>
+                    <i class="fa-brands fa-java"></i>
+                    <h3>Java</h3>
                 </article>
             </div>
         </section>
 
-        <!-- Projects Section (Slideshow) -->
+        <!-- Projects Section (Grid-based) -->
         <section id="projects" class="projects">
-            <h2>Utvalda Projekt</h2>
-            <div class="slideshow-container">
-                <div class="mySlides fade">
-                    <img src="images/project1.png" alt="Analys-plattform">
-                    <div class="caption-text">Projekt 1: Orion Analytics - Data Dashboard</div>
-                </div>
+            <div class="container">
+                <h2>Utvalda Projekt</h2>
+                <div class="projects-grid">
+                    <article class="project-item">
+                        <div class="project-image">
+                            <img src="images/project1.webp" alt="Analys-plattform" fetchpriority="high" width="805"
+                                height="1200" class="reveal-image">
+                        </div>
+                        <div class="project-content">
+                            <h3>Orion Analytics</h3>
+                            <p>En avancerad data-dashboard byggd för djupgående affärsanalys och visualisering av
+                                komplexa datamängder.</p>
+                            <span class="tech-tag">JavaScript</span> <span class="tech-tag">D3.js</span>
+                        </div>
+                    </article>
 
-                <div class="mySlides fade">
-                    <img src="images/project2.png" alt="E-handel">
-                    <div class="caption-text">Projekt 2: Veridian - Minimalistisk E-handel</div>
-                </div>
+                    <article class="project-item">
+                        <div class="project-image">
+                            <img src="images/project2.webp" alt="E-handel" width="805" height="1200"
+                                class="reveal-image">
+                        </div>
+                        <div class="project-content">
+                            <h3>Veridian E-handel</h3>
+                            <p>En minimalistisk och responsiv e-handelsplattform med fokus på användarvänlighet och
+                                snabb prestanda.</p>
+                            <span class="tech-tag">HTML5</span> <span class="tech-tag">Sass</span>
+                        </div>
+                    </article>
 
-                <div class="mySlides fade">
-                    <img src="images/project3.png" alt="Reseblogg">
-                    <div class="caption-text">Projekt 3: Nomad Journal - Reseblogg</div>
+                    <article class="project-item">
+                        <div class="project-image">
+                            <img src="images/project3.webp" alt="Reseblogg" width="805" height="1200"
+                                class="reveal-image">
+                        </div>
+                        <div class="project-content">
+                            <h3>Nomad Journal</h3>
+                            <p>En interaktiv reseblogg där användare kan dela sina äventyr genom vackra bilder och
+                                engagerande berättelser.</p>
+                            <span class="tech-tag">React</span> <span class="tech-tag">Grid</span>
+                        </div>
+                    </article>
                 </div>
-
-                <!-- Navigation arrows -->
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
             </div>
+        </section>
 
-            <div class="dot-container">
-                <span class="dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
+        <!-- Gallery Section (Bildspel) -->
+        <section id="gallery" class="gallery container">
+            <h2>Galleri & Process</h2>
+            <div id="image-carousel" class="splide" aria-label="Arbetsprocess Bildspel">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">
+                            <img src="images/project1.webp" alt="Process 1: Wireframing">
+                            <div class="slide-caption">
+                                <h3>Min Designprocess: Trådskisser</h3>
+                                <p>Allt börjar med en noggrann planering av strukturen för att säkerställa bästa
+                                    användarupplevelse.</p>
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <img src="images/project2.webp" alt="Process 2: Kodning">
+                            <div class="slide-caption">
+                                <h3>Implementering: Ren Kod</h3>
+                                <p>Jag fokuserar på att skriva skalbar och underhållsvänlig kod med modern teknik.</p>
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <img src="images/project3.webp" alt="Process 3: Slutresultat">
+                            <div class="slide-caption">
+                                <h3>Testning & Optimering</h3>
+                                <p>Varje detalj finjusteras för maximal prestanda och tillgänglighet på alla enheter.
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="container" style="padding: 4rem 0; text-align: center;">
+        <section id="contact" class="contact-section container">
             <h2>Låt oss prata!</h2>
-            <p style="margin-bottom: 2rem; color: var(--text-muted);">Är du intresserad av att arbeta tillsammans? Skicka gärna ett meddelande.</p>
-            <form style="max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem;">
-                <input type="text" placeholder="Namn" style="padding: 1rem; border-radius: 8px; border: 1px solid var(--border-color); background: var(--card-bg); color: white;">
-                <input type="email" placeholder="E-post" style="padding: 1rem; border-radius: 8px; border: 1px solid var(--border-color); background: var(--card-bg); color: white;">
-                <textarea placeholder="Meddelande" rows="5" style="padding: 1rem; border-radius: 8px; border: 1px solid var(--border-color); background: var(--card-bg); color: white;"></textarea>
-                <button type="button" style="padding: 1rem; background: var(--accent-color); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">Skicka</button>
+            <p>Är du intresserad av att arbeta tillsammans?
+                Skicka gärna ett meddelande.</p>
+            <form class="contact-form">
+                <input type="text" id="name" name="name" placeholder="Namn" autocomplete="name" required>
+                <input type="email" id="email" name="email" placeholder="E-post" autocomplete="email" required>
+                <textarea id="message" name="message" placeholder="Meddelande" rows="5" required></textarea>
+                <button type="submit" class="submit-btn btn-primary">Skicka</button>
             </form>
         </section>
     </main>
@@ -125,6 +210,8 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
