@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // 0. CSP-Compliant Deferred CSS Loading
+    const preloadLinks = document.querySelectorAll('link[rel="preload"][as="style"]');
+    preloadLinks.forEach(link => {
+        link.rel = 'stylesheet';
+    });
 
   console.log('Portfolio initialized with Modern Grid Layout');
 
