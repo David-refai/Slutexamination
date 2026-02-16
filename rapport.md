@@ -1,7 +1,7 @@
 # Rapport: Slutexamination Webbutveckling 1
 
 **Namn:** David Alrefai
-**Webbplats:** https://davidalrefai.github.io/Slutexamination/
+**Webbplats:** https://david-refai.github.io/Slutexamination/
 **Datum:** 2026-02-13  
 **Projekt:** Portfolio-webbplats
 **Kurs:** Webbutveckling 1
